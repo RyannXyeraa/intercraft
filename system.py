@@ -2,12 +2,12 @@ from rich import print
 from rich.panel import Panel
 from utils import clear
 from available_commands import *
-from network import ChatClient
-
+from network import ChatClient, ChatServer
+global MULTIPLAYER
 client = ChatClient()
 MULTIPLAYER = False
 
-import sys, os, json, difflib
+import sys, os, json, difflib, threading
 import subprocess as sp
 
 PWD = os.getcwd()
@@ -111,18 +111,47 @@ def start():
             if choice == "1":
                 break
             elif choice == "2":
-                ip = input("Server IP >> ")
+                print("\n1. Host Game")
+                print("2. Join Game")
 
-                try:
-                    client.connect(ip, 5000)
+                mode = input(">> ")
 
+                if mode == "1":
+                    server = ChatServer(host="0.0.0.0", port=5000)
+
+                    def run_server():
+                        server.start()
+
+                    threading.Thread(target=run_server, daemon=True).start()
+
+                    print("Server started on port 5000")
+
+                    client.connect("127.0.0.1", 5000)
+
+                    global MULTIPLAYER
                     MULTIPLAYER = True
+
+                    input("You are HOST. Press Enter...")
 
                     break
 
-                except Exception as e:
-                    print("Failed:", e)
-                    input()
+                elif mode == "2":
+                    ip = input("Server IP >> ")
+
+                    try:
+                        client.connect(ip, 5000)
+
+                        MULTIPLAYER = True
+
+                        input("Connected! Press Enter...")
+                        break
+
+                    except Exception as e:
+                        print("Failed:", e)
+                        input()
+
+                else:
+                    error_msg = "Invalid multiplayer mode!"
             elif choice == "3":
                 sys.exit(1)
             else:
