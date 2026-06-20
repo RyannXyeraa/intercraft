@@ -1,23 +1,22 @@
 # InterCraft
 
-Game online berbasis terminal yang dibuat dengan Python.
+InterCraft adalah game multiplayer berbasis terminal menggunakan Python. Project ini fokus pada sistem host-client, komunikasi real-time, dan pengembangan struktur game yang modular.
 
-## Fitur
-- Multiplayer
-- Sistem host
-- Chat realtime
+## Features
 
-## Instalasi
+- Multiplayer (host & client)
+- Chat real-time
+- Terminal-based interface
+- Struktur modular dan mudah dikembangkan
+
+## Requirements
+
+- Python 3.10+
+- Koneksi jaringan (LAN / internet)
+
+## Installation
 
 ```bash
-```
-```bash
+git clone https://github.com/<username>/intercraft.git
+cd intercraft
 pip install -r requirements.txt
-python main.py
----
-
-## .gitignore
-
-Untuk Python:
-
-```bash
