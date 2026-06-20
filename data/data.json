@@ -1,0 +1,11 @@
+{
+    "name": "Rian",
+    "role": "Fighter",
+    "level": 1,
+    "exp": 0,
+    "hp": 100,
+    "max_hp": 100,
+    "atk": 10,
+    "def": 5,
+    "gold": 0
+}
