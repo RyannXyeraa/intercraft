@@ -1,7 +1,6 @@
-from commands import Commands
+from __include import pwd
 def main():
-    pwd = Commands.PWD()
-    print(pwd)
+    pwd()
 
 if __name__ == "__main__":
     main()

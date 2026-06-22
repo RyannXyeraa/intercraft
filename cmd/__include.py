@@ -1,4 +1,4 @@
 import os
 
 def pwd():
-    return os.getcwd()
+    print(os.getcwd())

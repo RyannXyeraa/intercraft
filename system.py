@@ -87,7 +87,6 @@ def load_name():
     if not os.path.exists(DATA_PATH):
         create_user()
 
-
 def start():
     error_msg = ""
     while True:
@@ -113,6 +112,7 @@ def start():
             elif choice == "2":
                 print("\n1. Host Game")
                 print("2. Join Game")
+                print("3. Exit")
 
                 mode = input(">> ")
 
@@ -149,7 +149,6 @@ def start():
                     except Exception as e:
                         print("Failed:", e)
                         input()
-
                 else:
                     error_msg = "Invalid multiplayer mode!"
             elif choice == "3":
@@ -170,12 +169,13 @@ def __chat(msg):
     with open(DATA_PATH) as file:
         name = json.load(file)["name"]
 
-    text = f"@{name}: {msg}"
+    text = f" [blue]{name}[white]: {msg}"
 
     print(text)
 
     if MULTIPLAYER:
         client.send(text)
+
 
 def suggest(cmd):
     return difflib.get_close_matches(cmd, commands.keys(), n=5, cutoff=0.7)
